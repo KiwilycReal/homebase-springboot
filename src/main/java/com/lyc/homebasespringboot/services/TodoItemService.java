@@ -11,11 +11,8 @@ public class TodoItemService {
     @Autowired
     MongoTemplate mongoTemplate;
 
-    public String createNewTodoItem(TodoItem newItem){
-        System.out.println("hello, this is service with");
-        mongoTemplate.insert(newItem);
-        System.out.println(newItem);
-        return newItem.getId();
+    public TodoItem createNewTodoItem(TodoItem newItem){
+        return mongoTemplate.insert(newItem);
     }
 
 }

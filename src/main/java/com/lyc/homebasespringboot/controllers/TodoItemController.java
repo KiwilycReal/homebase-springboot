@@ -1,5 +1,6 @@
 package com.lyc.homebasespringboot.controllers;
 
+import com.google.gson.Gson;
 import com.lyc.homebasespringboot.models.TodoItem;
 import com.lyc.homebasespringboot.services.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,6 @@ public class TodoItemController {
 
     @PostMapping("/todo/new")
     public String createNewTodoItem(@RequestBody TodoItem newItem){
-        System.out.println("hello, this is controller with");
-        System.out.println(newItem);
-        return service.createNewTodoItem(newItem);
+        return new Gson().toJson(service.createNewTodoItem(newItem));
     }
 }
