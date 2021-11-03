@@ -7,9 +7,7 @@ import com.lyc.homebasespringboot.services.UserService;
 import com.lyc.homebasespringboot.utilities.GsonPasswordExclusionStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthController {
@@ -35,6 +33,11 @@ public class AuthController {
         newUser.setCredentialsNonExpired(true);
         newUser.setEnabled(true);
         return gson.toJson(service.registerNewUser(newUser));
+    }
+
+    @GetMapping("/auth")
+    public boolean checkDuplicateUsername(@RequestParam("username") String username) {
+        return service.doesUsernameExist(username);
     }
 
 }

@@ -31,4 +31,12 @@ public class UserService implements UserDetailsService {
         return mongoTemplate.insert(user);
     }
 
+    public boolean doesUsernameExist(String username) {
+        User user = mongoTemplate.findOne(
+                Query.query(Criteria.where("username").is(username)), User.class
+        );
+
+        return user == null;
+    }
+
 }

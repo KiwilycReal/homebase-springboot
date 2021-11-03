@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/auth").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -69,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("logout")
+                .logoutUrl("/logout")
                 .logoutSuccessHandler((req, resp, authentication) -> {
                     resp.setContentType("application/json;charset=utf-8");
                     PrintWriter out = resp.getWriter();
@@ -77,6 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     out.flush();
                     out.close();
                 })
+                .and()
+                .rememberMe()
                 .and()
                 .cors()
                 .and()
