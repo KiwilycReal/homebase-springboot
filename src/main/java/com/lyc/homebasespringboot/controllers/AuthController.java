@@ -25,6 +25,10 @@ public class AuthController {
 
     @PostMapping("/register")
     public String registerNewUser(@RequestBody User newUser){
+        // Check whether the new username already exists
+        if(service.doesUsernameExist(newUser.getUsername())){
+            return "Username already exists!";
+        }
         // Encrypt password and enable the new account
         String cipherPassword = encoder.encode(newUser.getPassword());
         newUser.setPassword(cipherPassword);

@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
                 Query.query(Criteria.where("username").is(username)), User.class
         );
 
-        return user == null;
+        return user != null;
     }
 
 }
