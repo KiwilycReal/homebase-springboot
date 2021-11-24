@@ -6,7 +6,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Document(collection = "TodoItems")
 public class TodoItem {
@@ -43,20 +42,20 @@ public class TodoItem {
         this.detail = detail;
     }
 
-    public boolean isChecked() {
+    public boolean getIsChecked() {
         return isChecked;
     }
 
-    public void setChecked(boolean checked) {
-        isChecked = checked;
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
     }
 
-    public boolean isFavoured() {
+    public boolean getIsFavoured() {
         return isFavoured;
     }
 
-    public void setFavoured(boolean favoured) {
-        isFavoured = favoured;
+    public void setIsFavoured(boolean isFavoured) {
+        this.isFavoured = isFavoured;
     }
 
     public LocalDateTime getCreatedDateTime() {
@@ -65,5 +64,18 @@ public class TodoItem {
 
     public LocalDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", detail='" + detail + '\'' +
+                ", isChecked=" + isChecked +
+                ", isFavoured=" + isFavoured +
+                ", createdDateTime=" + createdDateTime +
+                ", lastModifiedDateTime=" + lastModifiedDateTime +
+                '}';
     }
 }
